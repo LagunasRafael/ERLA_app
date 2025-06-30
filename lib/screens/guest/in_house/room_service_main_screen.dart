@@ -63,7 +63,7 @@ class _RoomServiceMainScreenState extends State<RoomServiceMainScreen>
                         );
                       },
                     ),
-                    // Solo mostramos el contador si el carrito no está vacío.
+                    // contador si el carrito no esta vacio
                     if (cart.items.isNotEmpty)
                       Positioned(
                         top: 6,
