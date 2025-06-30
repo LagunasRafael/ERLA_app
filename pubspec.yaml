@@ -1,0 +1,50 @@
+name: hotel_huesped_app
+description: "A new Flutter project."
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: ^3.7.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  smooth_page_indicator: ^1.1.0
+  table_calendar: ^3.1.1
+  intl: ^0.19.0
+  provider: ^6.1.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/fotohotel.jpg
+    - assets/images/habitaciones/estandar/03.- HAB. ESTÁNDAR.HEIC
+    - assets/images/habitaciones/estandar/06.- TERRAZA HAB. EST.HEIC
+    - assets/images/habitaciones/estandar/10.- HAB. ESTÁNDAR.HEIC
+    - assets/images/habitaciones/estandar_handicap/02.- HAB. HANDICAP.HEIC
+    - assets/images/habitaciones/jr_suite/15.- HAB. JR SUITE.jpg
+    - assets/images/habitaciones/master_suite/15.- M SUITE PB.HEIC
+    - assets/images/habitaciones/estandar_plus/02.- HAB, EST. PLUS.HEIC
+    - assets/images/amenidades/Hotel/pool_bar/01.- ALBERCA.jpg
+    - assets/images/amenidades/Hotel/pool_bar/03.- ALBERCA.jpeg
+    - assets/images/amenidades/Hotel/pool_bar/04.- ALBERCA.jpeg
+    - assets/images/amenidades/Hotel/pool_bar/08.- POOL BAR.jpeg
+    - assets/images/amenidades/Hotel/restaurant/02.- RESTAURANTE.JPG
+    - assets/images/amenidades/Hotel/restaurant/03.- RESTAURANTE.JPG
+    - assets/images/amenidades/Hotel/restaurant/04.- RESTAURANTE.JPG
+    - assets/images/amenidades/Hotel/restaurant/06.- RESTAURANTE.JPG
+    - assets/images/amenidades/Hotel/salones/07.- SALÓN HARAMARA.jpeg
+    - assets/images/amenidades/Hotel/spa/03.- CABINA SPA.HEIC
+    - assets/images/google_logo.png
+    - assets/images/apple_logo.png
+    - assets/images/platillos/pastel.jpg
+    - assets/images/platillos/club_sandwich.jpeg
+    - assets/images/platillos/ensalada.jpg
+    - assets/images/platillos/horchata.webp
+    - assets/images/platillos/sopa.png
