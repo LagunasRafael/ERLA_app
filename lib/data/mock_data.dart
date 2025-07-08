@@ -62,14 +62,14 @@ class MockDataService {
         name: 'Malecón de Puerto Vallarta',
         description: 'Un vibrante paseo marítimo ideal para caminar, disfrutar del arte local y ver el atardecer.',
         address: 'Paseo Díaz Ordaz S/N, Centro',
-        imageUrl: 'https://placehold.co/600x400/87CEEB/FFFFFF?text=Malecón',
+        imageUrl: 'assets/images/amenidades/externas/malecon.jpeg',
       ),
       LocalAttraction(
         id: 'la02',
         name: 'Mercado de Artesanías Río Cuale',
         description: 'Encuentra recuerdos únicos y auténticas artesanías mexicanas hechas por artistas de la región.',
         address: 'Isla Río Cuale S/N, Centro',
-        imageUrl: 'https://placehold.co/600x400/FF7F50/FFFFFF?text=Mercado',
+        imageUrl: 'assets/images/amenidades/externas/mercado.jpg',
       ),
     ];
   }

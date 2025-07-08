@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hotel_huesped_app/screens/guest/guest_main_scaffold.dart';
-import '/screens/guest/in_house/in_house_main_scaffold.dart'; // <-- Import correcto
+import '/screens/guest/in_house/in_house_main_scaffold.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:provider/provider.dart';
 import 'package:hotel_huesped_app/providers/cart_provider.dart';
@@ -22,28 +22,53 @@ Future<void> main() async {
   );
 }
 
+
 class HotelApp extends StatelessWidget {
   const HotelApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final ThemeData theme = ThemeData(
-      useMaterial3: true,
-      colorScheme: ColorScheme.fromSeed(
-        seedColor: const Color(0xff455840),
-        brightness: Brightness.light,
-      ),
-      fontFamily: 'Roboto',
+  
+    // paleta de colores.
+    const Color darkGreen = Color(0xFF455840);
+    const Color beige = Color(0xFFECE9CE);
+    const Color sageGreen = Color(0xFF8A947F);
+    const Color white = Color(0xFFFFFFFF);
+    const Color black = Color(0xFF000000);
+
+    final lightColorScheme = ColorScheme.light(
+      primary: darkGreen,    // Color de ACCIÓN
+      background: white,       // Color de FONDO
+      surface: beige,        // Color de TARJETAS
+      
+      onPrimary: white,      // Texto sobre ACCIÓN
+      onBackground: black,     // Texto sobre FONDO
+      onSurface: darkGreen,    // Texto sobre TARJETAS
+      
+      secondary: sageGreen,    // Color de acento secundario
+      onSecondary: white,      // Texto sobre el secundario
+      error: Colors.redAccent,
+      onError: white,
     );
 
     return MaterialApp(
       title: 'Hotel Grand Nayar',
       debugShowCheckedModeBanner: false,
-      theme: theme,
+      theme: ThemeData(
+        useMaterial3: true,
+        colorScheme: lightColorScheme,
+        scaffoldBackgroundColor: lightColorScheme.background,
+        cardTheme: CardTheme(
+          color: lightColorScheme.surface,
+          elevation: 2,
+        ),
+      ),
+      // modo obsccuro
+      // darkTheme: ThemeData(...) 
+      themeMode: ThemeMode.light, // modo claro para ver cambios mas facil 
       home: userHasActiveReservation
-          ? const InHouseMainScaffold() // Ahora usará la versión importada
+          ? const InHouseMainScaffold()
           : const GuestMainScaffold(),
     );
   }
 }
-// ¡YA NO HAY NADA MÁS DESPUÉS DE ESTO!

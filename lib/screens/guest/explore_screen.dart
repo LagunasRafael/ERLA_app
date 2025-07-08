@@ -1,13 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:hotel_huesped_app/data/mock_data.dart';
-import 'package:hotel_huesped_app/models/local_attraction.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import '../../data/mock_data.dart';
+import '../../models/local_attraction.dart';
 
 class ExploreScreen extends StatelessWidget {
   const ExploreScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    // Obtenemos los datos de la guía local de nuestro MockDataService
     final List<LocalAttraction> attractions = MockDataService.getLocalAttractions();
+    
+    // Definimos la lista de amenidades con sus rutas de imágenes locales
+    final amenities = [
+      {'title': 'Haiku Pool Bar', 'imageUrl': 'assets/images/amenidades/Hotel/pool_bar/03.- ALBERCA.jpeg'},
+      {'title': 'Spa "Kimiry"', 'imageUrl': 'assets/images/amenidades/Hotel/spa/03.- CABINA SPA.HEIC'},
+      {'title': 'Restaurantes', 'imageUrl': 'assets/images/amenidades/Hotel/restaurant/02.- RESTAURANTE.JPG'},
+      {'title': 'Salones', 'imageUrl': 'assets/images/amenidades/Hotel/salones/07.- SALÓN HARAMARA.jpeg'}, 
+    ];
 
     return Scaffold(
       appBar: AppBar(
@@ -18,60 +28,67 @@ class ExploreScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // SECCION DEL HOTEL
+            // --- SECCIÓN "EN EL HOTEL" ---
             const Padding(
               padding: EdgeInsets.fromLTRB(20, 20, 20, 10),
-              child: Text(
-                'En el Hotel',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-              ),
+              child: Text('En el Hotel', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
             ),
-            GridView.count(
-              crossAxisCount: 2,
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              mainAxisSpacing: 16,
-              crossAxisSpacing: 16,
-              children: const [
-                AmenityImageCard(
-                  title: 'Haiku Pool Bar',
-                  imageUrl: 'assets/images/amenidades/Hotel/pool_bar/04.- ALBERCA.jpeg',
+            AnimationLimiter(
+              child: GridView.builder(
+                itemCount: amenities.length,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 16,
+                  crossAxisSpacing: 16,
                 ),
-                AmenityImageCard(
-                  title: 'Spa "Kimiry"',
-                  imageUrl: 'assets/images/amenidades/Hotel/spa/03.- CABINA SPA.HEIC',
-                ),
-                AmenityImageCard(
-                  title: 'Restaurante Kwaiya',
-                  imageUrl: 'assets/images/amenidades/Hotel/restaurant/02.- RESTAURANTE.JPG',
-                ),
-                AmenityImageCard(
-                  title: 'Salon Haramara',
-                  imageUrl: 'assets/images/amenidades/Hotel/salones/07.- SALÓN HARAMARA.jpeg',
-                ),
-              ],
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                itemBuilder: (context, index) {
+                  return AnimationConfiguration.staggeredGrid(
+                    position: index,
+                    columnCount: 2,
+                    duration: const Duration(milliseconds: 500),
+                    child: ScaleAnimation(
+                      child: FadeInAnimation(
+                        child: AmenityImageCard(
+                          title: amenities[index]['title']!,
+                          imageUrl: amenities[index]['imageUrl']!,
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              ),
             ),
             const SizedBox(height: 24),
 
-            // SECCION DE GUIA LOCAL
+            // --- SECCIÓN "GUÍA LOCAL" ---
             const Padding(
               padding: EdgeInsets.fromLTRB(20, 20, 20, 10),
-              child: Text(
-                'Guía Local',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-              ),
+              child: Text('Guía Local', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
             ),
-            SizedBox(
-              height: 220,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                itemCount: attractions.length,
-                itemBuilder: (context, index) {
-                  final attraction = attractions[index];
-                  return AttractionCarouselCard(attraction: attraction);
-                },
+            AnimationLimiter(
+              child: SizedBox(
+                height: 220,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  itemCount: attractions.length,
+                  itemBuilder: (context, index) {
+                    final attraction = attractions[index];
+                    return AnimationConfiguration.staggeredList(
+                      position: index,
+                      duration: const Duration(milliseconds: 500),
+                      child: SlideAnimation(
+                        horizontalOffset: 50.0,
+                        child: FadeInAnimation(
+                          child: AttractionCarouselCard(attraction: attraction),
+                        ),
+                      ),
+                    );
+                  },
+                ),
               ),
             ),
             const SizedBox(height: 20),
@@ -82,7 +99,7 @@ class ExploreScreen extends StatelessWidget {
   }
 }
 
-// widgets para las amenidades
+// --- WIDGET REUTILIZABLE PARA LAS AMENIDADES ---
 class AmenityImageCard extends StatelessWidget {
   final String title;
   final String imageUrl;
@@ -127,7 +144,7 @@ class AmenityImageCard extends StatelessWidget {
   }
 }
 
-// --- WIDGET REUTILIZABLE PARA LA GUÍA LOCAL (sin cambios) ---
+// --- WIDGET REUTILIZABLE PARA LA GUÍA LOCAL ---
 class AttractionCarouselCard extends StatelessWidget {
   final LocalAttraction attraction;
   const AttractionCarouselCard({super.key, required this.attraction});
@@ -144,7 +161,7 @@ class AttractionCarouselCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Image.network( // Este sigue siendo de red por ahora
+            Image.asset( // Usamos Image.asset aquí también
               attraction.imageUrl,
               height: 120,
               width: double.infinity,
