@@ -79,7 +79,7 @@ class RoomsScreen extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      'Desde \$${room.pricePerNight.toStringAsFixed(2)} / noche',
+                                      'Desde \$${room.formattedPricePerNight} / noche',
                                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
                                             color: Theme.of(context).colorScheme.primary,
                                             fontWeight: FontWeight.w600,

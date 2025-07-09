@@ -82,7 +82,7 @@ class GuestHomeScreen extends StatelessWidget {
                     child: const Text('Reservar Ahora'),
                   ),
                   const SizedBox(height: 32),
-                  // Placeholder para otras secciones como "Por qué elegirnos" o "Experiencias"
+                  // Placeholder para otras secciones como experiencias"
                   const Divider(),
                   const SizedBox(height: 16),
                   const Center(child: Text('Más contenido próximamente...')),

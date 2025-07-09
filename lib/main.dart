@@ -5,13 +5,12 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:provider/provider.dart';
 import 'package:hotel_huesped_app/providers/cart_provider.dart';
 
-// Esta variable simula el estado de la reservación del usuario.
-bool userHasActiveReservation = true;
+// variable para el estado del usuario
+bool userHasActiveReservation = false;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initializeDateFormatting('es_ES', null);
-  // Modificamos la función runApp para "proveer" nuestro CartProvider
   runApp(
     ChangeNotifierProvider(
       // Aquí se crea la instancia de nuestro CartProvider
@@ -21,7 +20,6 @@ Future<void> main() async {
     ),
   );
 }
-
 
 class HotelApp extends StatelessWidget {
   const HotelApp({super.key});

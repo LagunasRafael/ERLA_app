@@ -19,7 +19,7 @@ class PaymentScreen extends StatefulWidget {
 
 class _PaymentScreenState extends State<PaymentScreen> {
   final _formKey = GlobalKey<FormState>();
-  // Nueva variable de estado para controlar si la casilla está marcada.
+  //variable de estado para controlar si la casilla está marcada.
   // La inicializamos en 'true' para animar al usuario a crear una cuenta.
   bool _createAccount = true;
 
@@ -38,7 +38,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // --- SECCIÓN 1: DATOS PERSONALES ---
+                // Datos personales
                 Text('Datos del Huésped Principal', style: Theme.of(context).textTheme.titleLarge),
                 const SizedBox(height: 16),
                 TextFormField(

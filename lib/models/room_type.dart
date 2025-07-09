@@ -1,12 +1,12 @@
-
+import 'package:intl/intl.dart'; // Asegúrate de importar el paquete
 import 'amenity.dart';
 
 class RoomType {
   final String id;
-  final String name; // Ej: "Suite Junior con Vista al Mar"
-  final String shortDescription; // Ej: "Ideal para parejas, con balcón privado."
-  final double pricePerNight; // El precio inicial por noche.
-  final List<String> imageUrls; // Una lista de URLs de imágenes para la galería.
+  final String name;
+  final String shortDescription;
+  final double pricePerNight;
+  final List<String> imageUrls;
   final List<Amenity> amenities;
 
   RoomType({
@@ -15,6 +15,15 @@ class RoomType {
     required this.shortDescription,
     required this.pricePerNight,
     required this.imageUrls,
-     required this.amenities,
+    required this.amenities,
   });
+
+  // Getter para el precio formateado con comas y 2 decimales
+  String get formattedPricePerNight {
+    return NumberFormat.currency(
+      locale: 'es_MX',       // Formato mexicano (comas para miles)
+      symbol: '',            // Quitamos el símbolo (lo añadiremos manualmente)
+      decimalDigits: 2,      // Siempre 2 decimales
+    ).format(pricePerNight);
+  }
 }

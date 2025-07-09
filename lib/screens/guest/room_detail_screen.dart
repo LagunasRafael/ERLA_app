@@ -45,7 +45,7 @@ class RoomDetailScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        '\$${room.pricePerNight.toStringAsFixed(2)} MXN / noche',
+                        '\$${room.formattedPricePerNight} MXN / noche',
                         style: Theme.of(context).textTheme.headlineSmall,
                       ),
                       //boton de reserva

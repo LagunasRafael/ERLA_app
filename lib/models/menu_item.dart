@@ -1,5 +1,5 @@
-// Creamos un 'enum' para definir las categorías posibles.
-// Esto evita errores de escritura y mantiene el código limpio.
+import 'package:intl/intl.dart';
+// isameos un enum para definir las categorías posibles. y evitar errores de escritura
 enum MenuCategory { platillos, bebidas, postres }
 
 class MenuItem {
@@ -8,7 +8,15 @@ class MenuItem {
   final String description;
   final double price;
   final String imageUrl;
-  final MenuCategory category; // <-- NUEVA PROPIEDAD
+  final MenuCategory category;
+
+  String get formattedPrice {
+    return NumberFormat.currency(
+      locale: 'es_MX',
+      symbol: '',
+      decimalDigits: 2,
+    ).format(price);
+  }
 
   const MenuItem({
     required this.id,
@@ -16,6 +24,6 @@ class MenuItem {
     required this.description,
     required this.price,
     required this.imageUrl,
-    required this.category, // <-- AÑADIDA AL CONSTRUCTOR
+    required this.category, 
   });
 }

@@ -62,6 +62,7 @@ class CartScreen extends StatelessWidget {
   }
 
   // Widget auxiliar para el resumen del total y el botón de confirmar
+
   Widget _buildTotalSummary(BuildContext context, CartProvider cart) {
     return Container(
       padding: const EdgeInsets.all(20.0),
@@ -83,8 +84,10 @@ class CartScreen extends StatelessWidget {
             children: [
               Text('Total:', style: Theme.of(context).textTheme.titleLarge),
               Text(
-                '\$${cart.totalPrice.toStringAsFixed(2)} MXN',
-                style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold),
+                '\$${cart.totalPrice} MXN', // Ya viene formateado con comas y decimales
+                style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ],
           ),
@@ -92,36 +95,24 @@ class CartScreen extends StatelessWidget {
           SizedBox(
             width: double.infinity,
             child: FilledButton(
-              // --- LÓGICA DE CONFIRMACIÓN AQUÍ ---
               onPressed: () {
-                // Mostramos el diálogo de confirmación
                 showDialog(
                   context: context,
                   builder: (BuildContext dialogContext) {
                     return AlertDialog(
                       title: const Text('¿Confirmar Pedido?'),
-                      content: Text('Se añadirá un cargo de \$${cart.totalPrice.toStringAsFixed(2)} a la cuenta de tu habitación.'),
+                      content: Text('Se añadirá un cargo de \$${cart.totalPrice} a la cuenta de tu habitación.'), // Ya formateado
                       actions: <Widget>[
                         TextButton(
                           child: const Text('Cancelar'),
-                          onPressed: () {
-                            // Cierra solo el diálogo
-                            Navigator.of(dialogContext).pop();
-                          },
+                          onPressed: () => Navigator.of(dialogContext).pop(),
                         ),
                         FilledButton(
                           child: const Text('Confirmar'),
                           onPressed: () {
-                            // 1. Limpiamos el carrito (usando el provider)
                             cart.clearCart();
-                            
-                            // 2. Cerramos el diálogo
                             Navigator.of(dialogContext).pop();
-                            
-                            // 3. Cerramos la pantalla del carrito para volver al menú
                             Navigator.of(context).pop();
-
-                            // 4. Mostramos un mensaje de éxito en la pantalla del menú
                             ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(
                                 content: Text('¡Pedido realizado con éxito!'),
