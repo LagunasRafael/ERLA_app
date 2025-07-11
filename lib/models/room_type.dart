@@ -1,4 +1,4 @@
-import 'package:intl/intl.dart'; // Asegúrate de importar el paquete
+import 'package:intl/intl.dart';
 import 'amenity.dart';
 
 class RoomType {
@@ -18,11 +18,11 @@ class RoomType {
     required this.amenities,
   });
 
-  // Getter para el precio formateado con comas y 2 decimales
+  // getter para el formato de comas
   String get formattedPricePerNight {
     return NumberFormat.currency(
-      locale: 'es_MX',       // Formato mexicano (comas para miles)
-      symbol: '',            // Quitamos el símbolo (lo añadiremos manualmente)
+      locale: 'es_MX', 
+      symbol: '',            // Quitamos el símbolo 
       decimalDigits: 2,      // Siempre 2 decimales
     ).format(pricePerNight);
   }

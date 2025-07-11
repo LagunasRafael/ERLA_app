@@ -12,8 +12,8 @@ class CartProvider with ChangeNotifier {
     double total = _items.fold(0.0, (sum, item) => sum + item.price);
     if (total >= 1000) {
       return NumberFormat.currency(
-        locale: 'es_MX', // Ajusta el locale según tu región
-        symbol: '', // Opcional: quita el símbolo de moneda si no lo necesitas
+        locale: 'es_MX', // ajuste de la region
+        symbol: '', // opcion para quitar el simbolo de la moneda si no se llegara a necesitar
         decimalDigits: 2, // Número de decimales
       ).format(total);
     } else {

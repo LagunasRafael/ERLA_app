@@ -88,7 +88,7 @@ class RoomDetailScreen extends StatelessWidget {
                           physics: const NeverScrollableScrollPhysics(),
                           childAspectRatio: 5,
                           children: const [
-                            AmenityItem(icon: Icons.wifi, label: 'Wi-Fi de Alta Velocidad'),
+                            AmenityItem(icon: Icons.wifi, label: 'Wi-Fi'),
                             AmenityItem(icon: Icons.ac_unit, label: 'Aire Acondicionado'),
                             AmenityItem(icon: Icons.tv, label: 'Smart TV 55"'),
                             AmenityItem(icon: Icons.balcony, label: 'Balcón Privado'),

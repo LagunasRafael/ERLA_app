@@ -15,6 +15,7 @@ Future<void> main() async {
     ChangeNotifierProvider(
       // Aquí se crea la instancia de nuestro CartProvider
       create: (context) => CartProvider(),
+
       // El child es nuestra aplicación principal, que ahora tendrá acceso al provider
       child: const HotelApp(),
     ),

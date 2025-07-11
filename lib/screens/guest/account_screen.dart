@@ -70,7 +70,7 @@ class _AccountScreenState extends State<AccountScreen> {
                 ),
                 const SizedBox(height: 24),
                 
-                // --- BOTÓN PRINCIPAL ---
+                //BOTÓN PRINCIPAL
                 FilledButton(
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
@@ -90,14 +90,14 @@ class _AccountScreenState extends State<AccountScreen> {
                   children: [
                     const Text('¿No tienes una cuenta?'),
                     TextButton(
-                      onPressed: () { /*Navegar a la pantalla de registro */ },
+                      onPressed: () { }, //navegar a la pantalla de registro
                       child: const Text('Regístrate'),
                     ),
                   ],
                 ),
                 const SizedBox(height: 24),
 
-                // --- SEPARADOR "O" ---
+                // separador
                 const Row(
                   children: [
                     Expanded(child: Divider()),
@@ -113,13 +113,13 @@ class _AccountScreenState extends State<AccountScreen> {
                 // --- BOTONES DE INICIO DE SESIÓN SOCIAL ---
                 _SocialLoginButton(
                   text: 'Continuar con Google',
-                  iconPath: 'assets/images/google_logo.png', // Deberás añadir este logo
+                  iconPath: 'assets/images/google_logo.png',
                   onPressed: () {},
                 ),
                 const SizedBox(height: 12),
                 _SocialLoginButton(
                   text: 'Continuar con Apple',
-                  iconPath: 'assets/images/apple_logo.png', // Deberás añadir este logo
+                  iconPath: 'assets/images/apple_logo.png',
                   isDarkMode: Theme.of(context).brightness == Brightness.dark,
                   onPressed: () {},
                 ),

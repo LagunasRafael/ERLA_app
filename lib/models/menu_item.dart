@@ -1,5 +1,5 @@
 import 'package:intl/intl.dart';
-// isameos un enum para definir las categorías posibles. y evitar errores de escritura
+// usaremos un enum para definir las categorías posibles. y evitar errores de escritura
 enum MenuCategory { platillos, bebidas, postres }
 
 class MenuItem {

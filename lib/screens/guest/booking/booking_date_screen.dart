@@ -9,7 +9,7 @@ class BookingDateScreen extends StatefulWidget {
 
   const BookingDateScreen({
     super.key,
-    required this.room, // <-- La hacemos requerida en el constructor
+    required this.room, //La hacemos requerida en el constructor
   });
 
   @override
@@ -66,7 +66,7 @@ class _BookingDateScreenState extends State<BookingDateScreen> {
                   shape: BoxShape.circle,
                 ),
               ),
-              // --- LÓGICA CORREGIDA AQUÍ ---
+              // logica de este lado
               onRangeSelected: (start, end, focusedDay) {
                 setState(() {
                   _focusedDay = focusedDay;

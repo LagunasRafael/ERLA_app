@@ -20,7 +20,7 @@ class BookingSummaryScreen extends StatelessWidget {
     // Logica del calculo
     final numberOfNights = endDate.difference(startDate).inDays;
     final subtotal = room.pricePerNight * numberOfNights;
-    // Usamos un impuesto de ejemplo del 19% (16% IVA + 3% ISH)
+    // Usamos un impuesto de ejemplo del 19% (16% IVA)
     //final taxes = subtotal * 0.19;
     final total = subtotal;
 
@@ -39,7 +39,7 @@ class BookingSummaryScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // --- TARJETA DE LA HABITACIÓN SELECCIONADA ---
+              // Tarjeta de la hanitacion seleccionada
               Text('Tu Habitación', style: Theme.of(context).textTheme.titleLarge),
               const SizedBox(height: 8),
               Card(
@@ -68,7 +68,7 @@ class BookingSummaryScreen extends StatelessWidget {
               ),
               const Divider(height: 40),
 
-              // --- SECCIÓN DE FECHAS ---
+              // seccion de fechas
               Text('Fechas', style: Theme.of(context).textTheme.titleLarge),
               const SizedBox(height: 8),
               ListTile(
@@ -91,7 +91,7 @@ class BookingSummaryScreen extends StatelessWidget {
               // Seccion de precios
               Text('Desglose de Precio', style: Theme.of(context).textTheme.titleLarge),
               const SizedBox(height: 16),
-              PriceRow(label: '$numberOfNights noches x \$${room.pricePerNight.toStringAsFixed(2)}', amount: subtotal),
+              PriceRow(label: '$numberOfNights noches x \$${room.formattedPricePerNight}', amount: subtotal),
               const SizedBox(height: 8),
               //PriceRow(label: 'Impuestos y tarifas (19%)', amount: taxes),
               const SizedBox(height: 8),
@@ -143,6 +143,15 @@ class PriceRow extends StatelessWidget {
     required this.amount,
     this.isTotal = false,
   });
+
+  // getter para el formato de comas
+  String get formattedPricePerNight {
+    return NumberFormat.currency(
+      locale: 'es_MX', 
+      symbol: '',            // Quitamos el símbolo 
+      decimalDigits: 2,      // Siempre 2 decimales
+    ).format(amount);
+  }
 
   @override
   Widget build(BuildContext context) {
