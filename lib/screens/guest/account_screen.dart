@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:hotel_huesped_app/providers/auth_provider.dart'; // Importa tu AuthProvider
+import 'package:hotel_huesped_app/screens/guest/register_screen.dart';
+import 'package:hotel_huesped_app/screens/guest/in_house/in_house_home_screen.dart';
 
 class AccountScreen extends StatefulWidget {
   const AccountScreen({super.key});
@@ -9,6 +13,55 @@ class AccountScreen extends StatefulWidget {
 
 class _AccountScreenState extends State<AccountScreen> {
   final _formKey = GlobalKey<FormState>();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  bool _isLoading = false; // Para manejar el estado de carga
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  Future<void> _loginWithEmail(BuildContext context) async {
+  if (!_formKey.currentState!.validate()) return;
+
+  setState(() => _isLoading = true);
+  try {
+    await Provider.of<AuthProvider>(context, listen: false).login(
+      _emailController.text.trim(),
+      _passwordController.text.trim(),
+    );
+
+    // 🔁 Si el login fue exitoso, redirigimos al Home
+    if (mounted) {
+      Navigator.of(context).pushNamedAndRemoveUntil('/in-house', (route) => false);
+    }
+  } catch (e) {
+    if (mounted) _showErrorDialog(context, e.toString());
+  } finally {
+    if (mounted) setState(() => _isLoading = false);
+  }
+}
+
+
+
+  void _showErrorDialog(BuildContext context, String message) {
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: const Text('Error'),
+        content: Text(message),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(ctx),
+            child: const Text('OK'),
+          ),
+        ],
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +96,7 @@ class _AccountScreenState extends State<AccountScreen> {
 
                 // --- FORMULARIO DE INICIO DE SESIÓN ---
                 TextFormField(
+                  controller: _emailController,
                   decoration: const InputDecoration(
                     labelText: 'Correo Electrónico',
                     border: OutlineInputBorder(),
@@ -51,12 +105,13 @@ class _AccountScreenState extends State<AccountScreen> {
                   keyboardType: TextInputType.emailAddress,
                   validator: (value) {
                     if (value == null || value.isEmpty) return 'Introduce tu correo';
-                    if (!value.contains('@')) return 'Introduce un correo válido';
+                    if (!value.contains('@')) return 'Correo inválido';
                     return null;
                   },
                 ),
                 const SizedBox(height: 16),
                 TextFormField(
+                  controller: _passwordController,
                   decoration: const InputDecoration(
                     labelText: 'Contraseña',
                     border: OutlineInputBorder(),
@@ -65,22 +120,22 @@ class _AccountScreenState extends State<AccountScreen> {
                   obscureText: true,
                   validator: (value) {
                     if (value == null || value.isEmpty) return 'Introduce tu contraseña';
+                    if (value.length < 6) return 'Mínimo 6 caracteres';
                     return null;
                   },
                 ),
                 const SizedBox(height: 24),
                 
-                //BOTÓN PRINCIPAL
+                // BOTÓN PRINCIPAL
                 FilledButton(
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      // Lógica de inicio de sesión aquí
-                    }
-                  },
+                  onPressed: _isLoading ? null : () => _loginWithEmail(context),
                   style: FilledButton.styleFrom(
                     padding: const EdgeInsets.symmetric(vertical: 16),
                   ),
-                  child: const Text('Iniciar Sesión', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                  child: _isLoading
+                      ? const CircularProgressIndicator(color: Colors.white)
+                      : const Text('Iniciar Sesión', 
+                          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                 ),
                 const SizedBox(height: 16),
 
@@ -88,16 +143,20 @@ class _AccountScreenState extends State<AccountScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text('¿No tienes una cuenta?'),
                     TextButton(
-                      onPressed: () { }, //navegar a la pantalla de registro
-                      child: const Text('Regístrate'),
-                    ),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (_) => const RegisterScreen()),
+                      );
+                    },
+                child: const Text("¿No tienes cuenta? Regístrate"),
+),
                   ],
                 ),
                 const SizedBox(height: 24),
 
-                // separador
+                // Separador
                 const Row(
                   children: [
                     Expanded(child: Divider()),
@@ -114,14 +173,14 @@ class _AccountScreenState extends State<AccountScreen> {
                 _SocialLoginButton(
                   text: 'Continuar con Google',
                   iconPath: 'assets/images/google_logo.png',
-                  onPressed: () {},
+                  onPressed: () => _loginWithGoogle(context),
                 ),
                 const SizedBox(height: 12),
                 _SocialLoginButton(
                   text: 'Continuar con Apple',
                   iconPath: 'assets/images/apple_logo.png',
                   isDarkMode: Theme.of(context).brightness == Brightness.dark,
-                  onPressed: () {},
+                  onPressed: () => _loginWithApple(context),
                 ),
               ],
             ),
@@ -130,9 +189,32 @@ class _AccountScreenState extends State<AccountScreen> {
       ),
     );
   }
+
+  // Métodos para autenticación social (implementa luego)
+  Future<void> _loginWithGoogle(BuildContext context) async {
+    setState(() => _isLoading = true);
+    try {
+      await Provider.of<AuthProvider>(context, listen: false).signInWithGoogle();
+    } catch (e) {
+      _showErrorDialog(context, 'Error con Google: $e');
+    } finally {
+      setState(() => _isLoading = false);
+    }
+  }
+
+  Future<void> _loginWithApple(BuildContext context) async {
+    setState(() => _isLoading = true);
+    try {
+      await Provider.of<AuthProvider>(context, listen: false).signInWithApple();
+    } catch (e) {
+      _showErrorDialog(context, 'Error con Apple: $e');
+    } finally {
+      setState(() => _isLoading = false);
+    }
+  }
 }
 
-// Widget auxiliar para los botones de inicio de sesión social
+// Widget auxiliar para botones sociales (sin cambios)
 class _SocialLoginButton extends StatelessWidget {
   final String text;
   final String iconPath;

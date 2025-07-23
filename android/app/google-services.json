@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "850859473808",
+    "project_id": "erlaapp-de446",
+    "storage_bucket": "erlaapp-de446.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:850859473808:android:0f3012989216070c039115",
+        "android_client_info": {
+          "package_name": "com.example.hotel_huesped_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvFW1E401NM7Fm92VYh_gYK3o1wbPeavg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

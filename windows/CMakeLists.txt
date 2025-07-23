@@ -2,6 +2,20 @@
 cmake_minimum_required(VERSION 3.14)
 project(hotel_huesped_app LANGUAGES CXX)
 
+# ====================== CONFIGURACIÓN MANUAL DE FIREBASE ======================
+set(FIREBASE_CPP_SDK_DIR "C:/firebase_cpp_sdk")  # Asegúrate de que esta ruta es correcta
+set(FIREBASE_SDK_LIBRARY_DIR "${FIREBASE_CPP_SDK_DIR}/libs/windows/x64")
+
+# Añade directorios de inclusión y bibliotecas
+include_directories("${FIREBASE_CPP_SDK_DIR}/include")
+link_directories("${FIREBASE_SDK_LIBRARY_DIR}")
+
+# Opcional: Verifica que los archivos existen (útil para depuración)
+if(NOT EXISTS "${FIREBASE_CPP_SDK_DIR}/CMakeLists.txt")
+    message(WARNING "Firebase SDK no encontrado en: ${FIREBASE_CPP_SDK_DIR}")
+endif()
+# =============================================================================
+
 # The name of the executable created for the application. Change this to change
 # the on-disk name of your application.
 set(BINARY_NAME "hotel_huesped_app")

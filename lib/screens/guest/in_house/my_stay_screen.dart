@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hotel_huesped_app/providers/auth_provider.dart';
+import 'package:provider/provider.dart';
 
 class MyStayScreen extends StatelessWidget {
   const MyStayScreen({super.key});
@@ -88,6 +90,53 @@ class MyStayScreen extends StatelessWidget {
               ],
             ),
           ),
+
+          const SizedBox(height: 16),
+FilledButton(
+  onPressed: () async {
+    final confirm = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Cerrar sesión'),
+        content: const Text('¿Estás seguro de que quieres cerrar sesión?'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(false),
+            child: const Text('Cancelar'),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.of(context).pop(true),
+            child: const Text('Cerrar sesión'),
+          ),
+        ],
+      ),
+    );
+
+    if (confirm == true) {
+      final auth = Provider.of<AuthProvider>(context, listen: false);
+      await auth.signOut();
+
+      if (context.mounted) {
+        await Provider.of<AuthProvider>(context, listen: false).signOut();
+        Navigator.of(context).pushNamedAndRemoveUntil('/account', (route) => false);
+      }
+    }
+  },
+  style: FilledButton.styleFrom(
+    backgroundColor: Theme.of(context).colorScheme.error,
+    foregroundColor: Colors.white,
+    padding: const EdgeInsets.symmetric(vertical: 16),
+  ),
+  child: const Row(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: [
+      Icon(Icons.logout),
+      SizedBox(width: 12),
+      Text('Cerrar Sesión', style: TextStyle(fontSize: 16)),
+    ],
+  ),
+),
+
         ],
       ),
     );
