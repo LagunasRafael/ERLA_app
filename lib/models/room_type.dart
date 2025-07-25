@@ -1,3 +1,4 @@
+//archivo para definir el formato de las habitaciones
 import 'package:intl/intl.dart';
 import 'amenity.dart';
 

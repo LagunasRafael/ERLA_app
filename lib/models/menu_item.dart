@@ -1,3 +1,5 @@
+//Este archivo lleva la estructura de lo que es el card reutilizable para el menu del room service
+
 import 'package:intl/intl.dart';
 // usaremos un enum para definir las categorías posibles. y evitar errores de escritura
 enum MenuCategory { platillos, bebidas, postres }

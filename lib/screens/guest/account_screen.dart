@@ -29,14 +29,18 @@ class _AccountScreenState extends State<AccountScreen> {
 
   setState(() => _isLoading = true);
   try {
-    await Provider.of<AuthProvider>(context, listen: false).login(
+    bool success = await Provider.of<AuthProvider>(context, listen: false).login(
       _emailController.text.trim(),
       _passwordController.text.trim(),
     );
 
-    // 🔁 Si el login fue exitoso, redirigimos al Home
-    if (mounted) {
-      Navigator.of(context).pushNamedAndRemoveUntil('/in-house', (route) => false);
+    if (success) {
+      if (mounted) {
+        Navigator.of(context).pushNamedAndRemoveUntil('/in-house', (route) => false);
+      }
+    } else {
+      final error = Provider.of<AuthProvider>(context, listen: false).errorMessage ?? 'Error desconocido';
+      if (mounted) _showErrorDialog(context, error);
     }
   } catch (e) {
     if (mounted) _showErrorDialog(context, e.toString());
@@ -44,6 +48,8 @@ class _AccountScreenState extends State<AccountScreen> {
     if (mounted) setState(() => _isLoading = false);
   }
 }
+
+
 
 
 

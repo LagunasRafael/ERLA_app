@@ -1,5 +1,4 @@
 // Este archivo define la estructura de una atracción o punto de interés local.
-
 class LocalAttraction {
   final String id;
   final String name;
