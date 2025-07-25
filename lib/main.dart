@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart' as firebase_auth; // Alias para evitar conflicto
+import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
-import 'package:hotel_huesped_app/providers/auth_provider.dart'; // Tu AuthProvider personalizado
+import 'package:hotel_huesped_app/providers/auth_provider.dart';
 import 'package:hotel_huesped_app/providers/cart_provider.dart';
 import 'package:hotel_huesped_app/screens/guest/account_screen.dart';
 import 'package:hotel_huesped_app/screens/guest/guest_main_scaffold.dart';
@@ -21,7 +21,7 @@ void main() async {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => AuthProvider()), // Tu AuthProvider personalizado
+        ChangeNotifierProvider(create: (_) => AuthProvider()),
         ChangeNotifierProvider(create: (_) => CartProvider()),
       ],
       child: const HotelApp(),

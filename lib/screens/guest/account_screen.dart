@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:hotel_huesped_app/providers/auth_provider.dart'; // Importa tu AuthProvider
 import 'package:hotel_huesped_app/screens/guest/register_screen.dart';
-import 'package:hotel_huesped_app/screens/guest/in_house/in_house_home_screen.dart';
 
 class AccountScreen extends StatefulWidget {
   const AccountScreen({super.key});
@@ -48,10 +47,6 @@ class _AccountScreenState extends State<AccountScreen> {
     if (mounted) setState(() => _isLoading = false);
   }
 }
-
-
-
-
 
   void _showErrorDialog(BuildContext context, String message) {
     showDialog(
@@ -196,7 +191,7 @@ class _AccountScreenState extends State<AccountScreen> {
     );
   }
 
-  // Métodos para autenticación social (implementa luego)
+  // Métodos para autenticación social (implementar luego)
   Future<void> _loginWithGoogle(BuildContext context) async {
     setState(() => _isLoading = true);
     try {

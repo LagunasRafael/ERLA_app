@@ -28,7 +28,7 @@ class ExploreScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // --- SECCIÓN "EN EL HOTEL" ---
+            //SECCIÓN "EN EL HOTEL"
             const Padding(
               padding: EdgeInsets.fromLTRB(20, 20, 20, 10),
               child: Text('En el Hotel', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
@@ -63,7 +63,7 @@ class ExploreScreen extends StatelessWidget {
             ),
             const SizedBox(height: 24),
 
-            // --- SECCIÓN "GUÍA LOCAL" ---
+            //SECCIÓN "GUÍA LOCAL"
             const Padding(
               padding: EdgeInsets.fromLTRB(20, 20, 20, 10),
               child: Text('Guía Local', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
@@ -99,7 +99,7 @@ class ExploreScreen extends StatelessWidget {
   }
 }
 
-// --- WIDGET REUTILIZABLE PARA LAS AMENIDADES ---
+//WIDGET REUTILIZABLE PARA LAS AMENIDADES
 class AmenityImageCard extends StatelessWidget {
   final String title;
   final String imageUrl;
@@ -144,7 +144,7 @@ class AmenityImageCard extends StatelessWidget {
   }
 }
 
-// --- WIDGET REUTILIZABLE PARA LA GUÍA LOCAL ---
+//WIDGET REUTILIZABLE PARA LA GUÍA LOCAL
 class AttractionCarouselCard extends StatelessWidget {
   final LocalAttraction attraction;
   const AttractionCarouselCard({super.key, required this.attraction});

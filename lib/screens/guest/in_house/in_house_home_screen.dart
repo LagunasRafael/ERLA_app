@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart'; // Necesario para copiar al portapapeles
+import 'package:flutter/services.dart';
 
 class InHouseHomeScreen extends StatelessWidget {
   const InHouseHomeScreen({super.key});
@@ -72,8 +72,7 @@ class InHouseHomeScreen extends StatelessWidget {
 }
 
 // --- WIDGETS AUXILIARES ---
-// Estos widgets viven en el mismo archivo para simplificar, pero en un proyecto
-// más grande podrían ir en su propia carpeta de 'widgets'.
+// Estos widgets viven en el mismo archivo para simplificar, pero mas adelante ir en su propia carpeta de 'widgets'.
 
 /// Tarjeta con la información más importante para el huésped.
 class _KeyInfoCard extends StatelessWidget {

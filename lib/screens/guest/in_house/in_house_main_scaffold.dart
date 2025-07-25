@@ -19,7 +19,7 @@ class _InHouseMainScaffoldState extends State<InHouseMainScaffold> {
   int _selectedIndex = 0;
 
   // Lista de las 4 pantallas principales para el huésped.
-  // Fíjate que reutilizamos la pantalla 'ExploreScreen' que ya habíamos diseñado.
+  // se reutiliza la pantalla 'ExploreScreen' que ya habíamos diseñado.
   static const List<Widget> _inHouseScreens = <Widget>[
     InHouseHomeScreen(),
     ExploreScreen(),

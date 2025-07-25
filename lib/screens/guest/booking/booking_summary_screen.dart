@@ -17,11 +17,9 @@ class BookingSummaryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Logica del calculo
+    // Logica del calculo con fines esteticos CAMBIARLOS a datos reales cuando se lleve la realizacion del back
     final numberOfNights = endDate.difference(startDate).inDays;
     final subtotal = room.pricePerNight * numberOfNights;
-    // Usamos un impuesto de ejemplo del 19% (16% IVA)
-    //final taxes = subtotal * 0.19;
     final total = subtotal;
 
     // Formateador de fecha para que se vea más profesional (ej: "jueves, 26 de junio")
@@ -93,7 +91,7 @@ class BookingSummaryScreen extends StatelessWidget {
               const SizedBox(height: 16),
               PriceRow(label: '$numberOfNights noches x \$${room.formattedPricePerNight}', amount: subtotal),
               const SizedBox(height: 8),
-              //PriceRow(label: 'Impuestos y tarifas (19%)', amount: taxes),
+              //PriceRow
               const SizedBox(height: 8),
               const Divider(),
               const SizedBox(height: 8),
@@ -108,7 +106,6 @@ class BookingSummaryScreen extends StatelessWidget {
         child: FilledButton(
           onPressed: () {
             //Navegar a la pantalla final de 'Datos del Huésped y Pago'
-            //LÓGICA DE NAVEGACIÓN AQUÍ ---
       Navigator.push(
         context,
         MaterialPageRoute(

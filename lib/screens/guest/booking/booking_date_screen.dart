@@ -118,7 +118,6 @@ class _BookingDateScreenState extends State<BookingDateScreen> {
                     onPressed: (_rangeStart != null && _rangeEnd != null)
                         ? () {
                             // Navegar a la pantalla de resumen de compra
-                            // Navegamos a la pantalla de resumen
                             Navigator.push(
                               context,
                               MaterialPageRoute(

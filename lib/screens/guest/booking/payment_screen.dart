@@ -77,7 +77,6 @@ class _PaymentScreenState extends State<PaymentScreen> {
                   validator: (value) => (value == null || value.isEmpty) ? 'Introduce el número de la tarjeta' : null,
                 ),
                 const SizedBox(height: 16),
-                // (El resto de los campos de pago...)
                 Row(
                   children: [
                     Expanded(child: TextFormField(decoration: const InputDecoration(labelText: 'Vencimiento (MM/AA)', border: OutlineInputBorder(), prefixIcon: Icon(Icons.calendar_today)), keyboardType: TextInputType.datetime, validator: (value) => (value == null || value.isEmpty) ? 'Inválido' : null)),

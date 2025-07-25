@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_staggered_animations/flutter_staggered_animations.dart'; // <-- AÑADE ESTE IMPORT
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import '../../data/mock_data.dart';
 import '../../models/room_type.dart';
 import 'room_detail_screen.dart';

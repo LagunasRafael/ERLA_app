@@ -172,20 +172,19 @@ class _MenuItemCard extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 8),
-            // --- MODIFICACIÓN AQUÍ ---
             IconButton(
               icon: const Icon(Icons.add_shopping_cart_outlined),
               onPressed: () {
-                // 1. Buscamos el CartProvider en el contexto.
+                //  Buscamos el CartProvider en el contexto.
                 //    'listen: false' es una optimización importante aquí. Le decimos
                 //    que solo queremos llamar a una función, no necesitamos que este
                 //    botón se redibuje si el carrito cambia.
                 final cart = Provider.of<CartProvider>(context, listen: false);
 
-                // 2. Llamamos al método para añadir el item actual.
+                //  Llamamos al método para añadir el item actual.
                 cart.addItem(item);
 
-                // 3. Mostramos una confirmación visual al usuario.
+                //  Mostramos una confirmación visual al usuario.
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
                     content: Text('${item.name} añadido al carrito.'),
